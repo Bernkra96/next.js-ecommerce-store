@@ -1,6 +1,9 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getItem } from '../../database/items';
+
+function addCart() {}
 
 export default function ItemPage(props) {
   const item = getItem(Number(props.params.Itemid));
@@ -19,6 +22,7 @@ export default function ItemPage(props) {
         width={625}
         height={500}
       />
+      <button onClick={addCart()}>Add do Cart</button>
       <p>{item.shortdiscrion}</p>
     </div>
   );

@@ -23,13 +23,16 @@ export default function Home() {
             <p> {item.brand} </p>
             <p> {'Rating ' + item.rating + ' / 5'} </p>
             <p> {'price = ' + item.price / 100 + '€'} </p>
-            <Image
-              src={item.img}
-              alt={item.itemName}
-              unoptimized
-              width={425}
-              height={300}
-            />
+            <Link href={`Items/` + item.id}>
+              <Image
+                src={item.img}
+                alt={item.itemName}
+                href={`Items/` + item.id}
+                unoptimized
+                width={425}
+                height={300}
+              />
+            </Link>
             <p> {'Stock : ' + item.stock + ' .stk'} </p>
 
             <p>{item.shortdiscrion}</p>
