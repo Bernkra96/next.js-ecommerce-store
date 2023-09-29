@@ -8,17 +8,17 @@ const items = [
     price: 123456789, // Price in Euro Cent 100 Cent = 1 Euro
     stock: 10,
     rating: 2, // of 5
-    img: 'https://www.nasa.gov/sites/default/files/styles/946xvariable_height/public/images/481614main_rpd_soyuz_full.jpg?itok=anG3ZOmW',
+    img: 'https://images-assets.nasa.gov/image/sts119-s-005/sts119-s-005~thumb.jpg',
     shortdiscrion: 'Cool öko item ',
   },
   {
     id: 1, // Protuct id
-    itemName: 'Collo Dibng', // LisstingName
-    brand: 'Erth AG', // Barnd
+    itemName: 'Rocket', // LisstingName
+    brand: 'Space AG', // Barnd
     price: 841, // Price in Euro Cent 100 Cent = 1 Euro
     rating: 3, // of 5
     stock: 1,
-    img: 'https://www.nasa.gov/sites/default/files/styles/430x323/public/images/482069main_rh_Explorer_full.jpg?itok=iy7seLsU',
+    img: 'https://images-assets.nasa.gov/image/KSC-20230518-PH-RKL01_0002/KSC-20230518-PH-RKL01_0002~medium.jpg',
     shortdiscrion: 'Öko prtuct ',
   },
   {
@@ -28,7 +28,7 @@ const items = [
     price: 119, // Price in Euro Cent 100 Cent = 1 Euro
     rating: 5, // of 5
     stock: 45, // Stock
-    img: 'https://www.nasa.gov/sites/default/files/styles/946xvariable_height/public/images/481483main_rpd_shuttle_full.jpg?itok=dXTAtOEy',
+    img: 'https://images-assets.nasa.gov/image/KSC-20220614-PH-CSH01_0044/KSC-20220614-PH-CSH01_0044~large.jpg',
     shortdiscrion: 'Cool öko item ',
   },
 ];
