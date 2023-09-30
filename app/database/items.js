@@ -19,13 +19,25 @@ const items = [
     rating: 3, // of 5
     stock: 1,
     img: 'https://images-assets.nasa.gov/image/KSC-20230518-PH-RKL01_0002/KSC-20230518-PH-RKL01_0002~medium.jpg',
-    shortdiscrion: 'Öko prtuct ',
+    shortdiscrion: '3 Stages ',
   },
+
+  {
+    id: 2, // Protuct id
+    itemName: 'Big Rocket', // LisstingName
+    brand: 'Y Sapce', // Barnd
+    price: 119, // Price in Euro Cent 100 Cent = 1 Euro
+    rating: 4, // of 5
+    stock: 9, // Stock
+    img: 'https://images-assets.nasa.gov/image/201401080005HQ/201401080005HQ~medium.jpg',
+    shortdiscrion: 'Cool öko item ',
+  },
+
   {
     id: 3, // Protuct id
     itemName: 'Tool ', // LisstingName
     brand: 'ARRRRR inc', // Barnd
-    price: 119, // Price in Euro Cent 100 Cent = 1 Euro
+    price: 19999109, // Price in Euro Cent 100 Cent = 1 Euro
     rating: 5, // of 5
     stock: 45, // Stock
     img: 'https://images-assets.nasa.gov/image/KSC-20220614-PH-CSH01_0044/KSC-20220614-PH-CSH01_0044~large.jpg',
