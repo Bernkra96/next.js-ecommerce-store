@@ -7,11 +7,32 @@ main {
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
+  background-color: grey;
 }
 
-h1 h2 h3 p {
+main h1 {
+  background-color: grey;
+}
+main h2 {
+  background-color: grey;
+}
+main p {
+  background-color: grey;
+}
+main ul {
+  background-color: grey;
+}
+main li {
+  background-color: grey;
+}
+main img {
+  background-color: grey;
+  border-radius: 10px;
 }
 
+main a {
+  background-color: grey;
+}
 header {
   background-color: aqua;
   border-radius: 10px;
@@ -21,7 +42,7 @@ header {
   margin: 5px;
 }
 header a {
-  background-color: rgb(255, 102, 0);
+  background-color: orange;
   size: 20 xp 80 px;
   border-radius: 10px;
   padding: 5px;
