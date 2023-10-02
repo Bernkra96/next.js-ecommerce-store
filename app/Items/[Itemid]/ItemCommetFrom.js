@@ -13,7 +13,7 @@ export default function ItemCommetForm() {
           onChange={(e) => setComment(e.currentTarget.value)}
         />
         <button formAction={async () => await createOrUpdateComment(comment)}>
-          Add Comment{' '}
+          Add Comment
         </button>
       </form>
     </div>

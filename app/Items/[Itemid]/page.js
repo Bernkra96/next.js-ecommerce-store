@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getItem } from '../../database/items';
+import CartItemForm from './CartItemFrom';
 import ItemCommetForm from './ItemCommetFrom';
 
 export default function ItemPage(props) {
@@ -29,8 +30,7 @@ export default function ItemPage(props) {
       <p>{item.shortdiscrion}</p>
 
       <ItemCommetForm />
-
-      <itemmComments />
+      <CartItemForm x={Number(props.params.Itemid)} />
 
       <ul>
         {itemmComments.map((cookie) => (

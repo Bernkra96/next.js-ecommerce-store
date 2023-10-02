@@ -1,10 +1,20 @@
+import { cookies } from 'next/headers';
+
 export default function cartPage() {
+  const getItemCart = cookies().getAll('itemCart');
+  const itemCart = JSON.stringify(getItemCart);
+  const regex = /\d+(?=})/gm;
+  const items = regex.exec(itemCart);
+
+  console.log(itemCart);
   return (
     <>
       <h1>Yor Itmes </h1>
-      <div>
-        <p> </p>
-      </div>
+
+      <p> {items} </p>
+
+      <div></div>
+
       <h3>Yor Total </h3>
 
       <h3> Ceckot </h3>
