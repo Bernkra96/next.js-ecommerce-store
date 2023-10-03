@@ -1,21 +1,38 @@
 import { cookies } from 'next/headers';
+import Image from 'next/image';
+import { isTemplateExpression } from 'typescript';
+import { getItem } from '../database/items';
+import { deleteCart } from '../Items/[Itemid]/ActionCartItem';
 
 export default function cartPage() {
-  const getItemCart = cookies().getAll('itemCart');
-  const itemCart = JSON.stringify(getItemCart);
-  const regex = /\d+(?=})/gm;
-  const items = regex.exec(itemCart);
+  // const cookieStore = cookies();
+  // const itemCart = cookieStore.get('itemCart');
+  //  const item = getItem(1);
 
-  console.log(itemCart);
+  const getItemCart = cookies().getAll('itemCart');
+  const itemCart = getItemCart;
+  const regex = /\d+(?=})/gm;
+  const itemsid = regex.exec(JSON.stringify(itemCart));
+  const item = getItem(Number(itemsid));
+
   return (
     <>
       <h1>Yor Itmes </h1>
+      <div>
+        <h2>{item.itemName} </h2>
 
-      <p> {items} </p>
+        <p>{item.brand} </p>
+        <p>{'Price = ' + item.price / 100 + '€'} </p>
+        <Image
+          src={item.img}
+          alt={item.itemName}
+          unoptimized
+          width={350}
+          height={600}
+        />
+      </div>
 
-      <div></div>
-
-      <h3>Yor Total </h3>
+      <p>{'Total = ' + item.price / 100 + '€'} </p>
 
       <h3> Ceckot </h3>
 

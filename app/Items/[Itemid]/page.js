@@ -16,7 +16,7 @@ export default function ItemPage(props) {
 
         <p> {item.brand} </p>
         <p> {'Rating ' + item.rating + ' / 5'} </p>
-        <p> {'price = ' + item.price / 100 + '€'} </p>
+        <p> {'Price = ' + item.price / 100 + '€'} </p>
         <p> {'Stock : ' + item.stock + ' .stk'} </p>
         <Image
           src={item.img}
