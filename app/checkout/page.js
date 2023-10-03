@@ -4,11 +4,7 @@ import { isTemplateExpression } from 'typescript';
 import { getItem } from '../database/items';
 import { deleteCart } from '../Items/[Itemid]/ActionCartItem';
 
-export default function cartPage() {
-  // const cookieStore = cookies();
-  // const itemCart = cookieStore.get('itemCart');
-  //  const item = getItem(1);
-
+export default function CheckoutPage() {
   const getItemCart = cookies().getAll('itemCart');
   const itemCart = getItemCart;
   const regex = /\d+(?=})/gm;
@@ -16,27 +12,7 @@ export default function cartPage() {
   const item = getItem(Number(itemsid));
 
   return (
-    <>
-      <h1>Yor Itmes </h1>
-      <div>
-        <h2>{item.itemName} </h2>
-
-        <p>{item.brand} </p>
-        <p>{'Price = ' + item.price / 100 + '€'} </p>
-        <Image
-          src={item.img}
-          alt={item.itemName}
-          unoptimized
-          width={350}
-          height={600}
-        />
-      </div>
-      <p>{'Total = ' + item.price / 100 + '€'} </p>
-      <button type="button" data-test-id="product-add-to-cart">
-        Add To Card
-      </button>{' '}
-      <button type="button">Delide Card</button>
-      <h3> Ceckot </h3>
+    <div>
       <form>
         <ul>
           <li>
@@ -112,6 +88,25 @@ export default function cartPage() {
           'Bey'
         </button>
       </form>
-    </>
+
+      <div>
+        {' '}
+        <h1>Yor Itmes </h1>
+        <div>
+          <h2>{item.itemName} </h2>
+
+          <p>{item.brand} </p>
+          <p>{'Price = ' + item.price / 100 + '€'} </p>
+          <Image
+            src={item.img}
+            alt={item.itemName}
+            unoptimized
+            width={160}
+            height={300}
+          />
+        </div>
+        <p>{'Total = ' + item.price / 100 + '€'} </p>
+      </div>
+    </div>
   );
 }
