@@ -1,9 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import Link from 'next/link';
-import { isTemplateExpression } from 'typescript';
+import { redirect } from 'next/navigation';
 import { getItem } from '../database/items';
-import { deleteCart } from '../Items/[Itemid]/ActionCartItem';
 
 export default function cartPage() {
   // const cookieStore = cookies();
@@ -33,9 +31,7 @@ export default function cartPage() {
         />
       </div>
       <p>{'Total = ' + item.price / 100 + '€'} </p>
-      <Link type="button" href={`/checkout`}>
-        Bay
-      </Link>
+      <a href="/checkout">Buy</a>
       <button type="button">Delide Card</button>
     </>
   );
