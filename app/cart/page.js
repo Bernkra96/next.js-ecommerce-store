@@ -1,6 +1,5 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
 import { getItem } from '../database/items';
 
 export default function cartPage() {

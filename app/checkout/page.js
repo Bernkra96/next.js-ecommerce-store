@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
 import { getItem } from '../database/items';
+import BuyForm from './BuyFrorm';
 
 export default function CheckoutPage() {
   const getItemCart = cookies().getAll('itemCart');
@@ -9,14 +9,6 @@ export default function CheckoutPage() {
   const regex = /\d+(?=})/gm;
   const itemsid = regex.exec(JSON.stringify(itemCart));
   const item = getItem(Number(itemsid));
-
-  function Buy(x) {
-    if (item.stock > 0) {
-      item.stock = item.stock - x;
-    }
-
-    redirect('/thanks');
-  }
 
   return (
     <div>
@@ -93,13 +85,8 @@ export default function CheckoutPage() {
             </label>
           </li>
         </ul>
-        <button
-          type="button"
-          data-test-id="checkout-confirm-order"
-          onClick={Buy(1)}
-        >
-          'Bey'
-        </button>
+
+        <BuyForm getItemStk={Number(itemsid)} />
       </form>
 
       <div>
