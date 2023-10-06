@@ -1,4 +1,3 @@
-import { Crafty_Girls } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getItem } from '../../database/items';
@@ -10,7 +9,7 @@ export default function ItemPage(props) {
   const item = getItem(Number(props.params.Itemid));
 
   return (
-    <>
+    <main>
       <div>
         <h1>{item.itemName}</h1>
 
@@ -36,6 +35,6 @@ export default function ItemPage(props) {
           </li>
         ))}
       </ul>
-    </>
+    </main>
   );
 }

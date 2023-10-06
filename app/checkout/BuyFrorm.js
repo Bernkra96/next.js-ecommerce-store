@@ -2,10 +2,10 @@
 
 import { BuyItem } from './ActionsBuyFrom';
 
-export default function BuyForm() {
+export default function BuyForm(id) {
   return (
     <div>
-      <button onClick={async () => await BuyItem()}> Buy Confirm </button>
+      <button onClick={async () => await BuyItem(id)}> Buy Confirm </button>
     </div>
   );
 }

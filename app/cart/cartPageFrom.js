@@ -6,7 +6,6 @@ export default function CartPageForm() {
   return (
     <div>
       {' '}
-      <a href="/checkout">Buy</a>
       <button type="button" onClick={async () => await GoCeckout()}>
         Buy
       </button>
