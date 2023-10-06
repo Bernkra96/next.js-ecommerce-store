@@ -1,8 +1,8 @@
+import { Crafty_Girls } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getItem } from '../../database/items';
 import CartItemForm from './CartItemFrom';
-import ItemCommetForm from './ItemCommetFrom';
 
 export default function ItemPage(props) {
   const cookieStore = cookies();
@@ -26,12 +26,8 @@ export default function ItemPage(props) {
           height={600}
         />
       </div>
-
       <p>{item.shortdiscrion}</p>
-
-      <ItemCommetForm />
-      <CartItemForm x={Number(props.params.Itemid)} />
-
+      <CartItemForm x={item.id} />
       <ul>
         {itemmComments.map((cookie) => (
           <li key={`cookie-${cookie.id}`}>

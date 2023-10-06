@@ -3,5 +3,5 @@
 import { redirect } from 'next/navigation';
 
 export async function GoCeckout() {
-  return await redirect('/chekout');
+  await redirect('/checkout');
 }

@@ -1,19 +1,8 @@
-import { cookies } from 'next/headers';
-import Image from 'next/image';
-import { getItem } from '../database/items';
 import BuyForm from './BuyFrorm';
 
 export default function CheckoutPage() {
-  const getItemCart = cookies().getAll('itemCart');
-  const itemCart = getItemCart;
-  const regex = /\d+(?=})/gm;
-  const itemsid = regex.exec(JSON.stringify(itemCart));
-  const item = getItem(Number(itemsid));
-
   return (
-    <div>
-      <h2>Checkout </h2>
-
+    <main>
       <form>
         <ul>
           <li>
@@ -85,28 +74,10 @@ export default function CheckoutPage() {
             </label>
           </li>
         </ul>
-
-        <BuyForm getItemStk={Number(itemsid)} />
       </form>
-
       <div>
-        {' '}
-        <h1>Yor Itmes </h1>
-        <div>
-          <h2>{item.itemName} </h2>
-
-          <p>{item.brand} </p>
-          <p>{'Price = ' + item.price / 100 + '€'} </p>
-          <Image
-            src={item.img}
-            alt={item.itemName}
-            unoptimized
-            width={160}
-            height={300}
-          />
-        </div>
-        <p>{'Total = ' + item.price / 100 + '€'} </p>
+        <BuyForm />
       </div>
-    </div>
+    </main>
   );
 }

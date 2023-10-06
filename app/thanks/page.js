@@ -1,8 +1,8 @@
 export default function ThanksPage() {
   return (
-    <>
-      {' '}
-      <div> Tanks for Shoping </div>c
-    </>
+    <main>
+      <div> Tanks for Shoping </div>
+      <a href="/">Buy More</a>
+    </main>
   );
 }

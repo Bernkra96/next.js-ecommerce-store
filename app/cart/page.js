@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getItem } from '../database/items';
+import CartPageForm from './cartPageFrom';
 
 export default function cartPage() {
   // const cookieStore = cookies();
@@ -29,9 +30,9 @@ export default function cartPage() {
           height={600}
         />
       </div>
+
+      <CartPageForm />
       <p>{'Total = ' + item.price / 100 + '€'} </p>
-      <a href="/checkout">Buy</a>
-      <button type="button">Delide Card</button>
     </>
   );
 }
