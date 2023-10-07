@@ -15,7 +15,7 @@ export default function cartPage() {
   const item = getItem(Number(itemsid));
 
   return (
-    <>
+    <main>
       <h1>Yor Itmes </h1>
       <div>
         <h2>{item.itemName} </h2>
@@ -33,6 +33,6 @@ export default function cartPage() {
 
       <CartPageForm />
       <p>{'Total = ' + item.price / 100 + '€'} </p>
-    </>
+    </main>
   );
 }
