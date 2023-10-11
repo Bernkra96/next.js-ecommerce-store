@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import { getItem } from '../database/items';
-import BuyForm from './BuyFrorm';
+import { getItem } from '../database/items.js';
 
 export default function CheckoutPage() {
   const getItemCart = cookies().getAll('itemCart');
@@ -84,26 +83,20 @@ export default function CheckoutPage() {
           </li>
         </ul>
       </form>
-      <div></div>
       <h1>Yor Itmes </h1>
-      <div>
-        <h2>{item.itemName} </h2>
 
-        <p>{item.brand} </p>
-        <p>{'Price = ' + item.price / 100 + '€'} </p>
-        <Image
-          src={item.img}
-          alt={item.itemName}
-          unoptimized
-          width={125}
-          height={250}
-        />
-        <p>{'Total = ' + item.price / 100 + '€'} </p>
-      </div>
+      <h2>{item.itemName} </h2>
 
-      <div>
-        <BuyForm />
-      </div>
+      <p>{item.brand} </p>
+      <p>{'Price = ' + item.price / 100 + '€'} </p>
+      <Image
+        src={item.img}
+        alt={item.itemName}
+        unoptimized
+        width={125}
+        height={200}
+      />
+      <p>{'Total = ' + item.price / 100 + '€'} </p>
     </main>
   );
 }

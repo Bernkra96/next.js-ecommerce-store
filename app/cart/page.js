@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import { getItem } from '../database/items';
-import CartPageForm from './cartPageFrom';
+import { getItem } from '../database/items.js';
 
 export default function cartPage() {
   // const cookieStore = cookies();
@@ -17,21 +16,19 @@ export default function cartPage() {
   return (
     <main>
       <h1>Yor Itmes </h1>
-      <div>
-        <h2>{item.itemName} </h2>
 
-        <p>{item.brand} </p>
-        <p>{'Price = ' + item.price / 100 + '€'} </p>
-        <Image
-          src={item.img}
-          alt={item.itemName}
-          unoptimized
-          width={350}
-          height={600}
-        />
-      </div>
+      <h2>{item.itemName} </h2>
 
-      <CartPageForm />
+      <p>{item.brand} </p>
+      <p>{'Price = ' + item.price / 100 + '€'} </p>
+      <Image
+        src={item.img}
+        alt={item.itemName}
+        unoptimized
+        width={350}
+        height={600}
+      />
+
       <p>{'Total = ' + item.price / 100 + '€'} </p>
     </main>
   );

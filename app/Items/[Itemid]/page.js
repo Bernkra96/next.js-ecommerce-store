@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import { getItem } from '../../database/items';
+import { getItem } from '../../database/items.js';
 import CartItemForm from './CartItemFrom';
 
 export default function ItemPage(props) {

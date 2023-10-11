@@ -1,16 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getItems } from './database/items';
+import { getItems } from './database/items.js';
+import { getItemsFromSql } from './database/psotgersControler';
 
-const items = getItems();
-export default function Home() {
+export default async function Home() {
+  const items = getItems();
+  const newItems = await getItemsFromSql();
+  console.log(newItems);
+
   return (
     <main>
       <h1> Bernhard Shop </h1>
-
-      <p> Willkommen in Bernahrd's Shop</p>
-
-      <h2>Unsre Protuckte </h2>
+      <p> Welcome to Bernhard's Shop</p>
+      <h2>Our Products </h2>
 
       <ul>
         {items.map((item) => (
@@ -23,14 +25,12 @@ export default function Home() {
               <Image
                 src={item.img}
                 alt={item.itemName}
-                unoptimized
+                unoptimized={true}
                 width={255}
                 height={340}
               />
             </Link>
             <p> {'Stock : ' + item.stock + ' .stk'} </p>
-
-            <p>{item.shortdiscrion}</p>
           </li>
         ))}
       </ul>
