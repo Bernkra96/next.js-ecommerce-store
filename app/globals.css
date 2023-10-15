@@ -25,6 +25,9 @@ main ul {
 main li {
   background-color: grey;
 }
+main div {
+  background-color: grey;
+}
 main img {
   background-color: grey;
   border-radius: 10px;
@@ -32,6 +35,10 @@ main img {
 
 main a {
   background-color: grey;
+  color: black;
+  text-decoration: none;
+  text-size-adjust: 100%;
+  font-weight: bold;
 }
 header {
   background-color: aqua;
@@ -50,6 +57,7 @@ header a {
   text-decoration: none;
   color: black;
   margin: 5px;
+  box-shadow: 5px green;
 }
 
 footer {

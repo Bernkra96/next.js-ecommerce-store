@@ -1,11 +1,17 @@
 'use server';
 
+import { get } from 'http';
 import { cookies } from 'next/headers';
 
-export async function createOrUpdateCart(Item) {
-  await cookies().set('itemCart', JSON.stringify([{ id: 1, ItemId: Item }]));
-}
+export async function createOrUpdateCart(x) {
+  const lodeCookie = cookies().get('itemCart');
+  // let getCookie = JSON.stringify(lodeCookie);
 
-export async function deleteCart() {
-  await cookies().set('itemCart');
+  // cookie.(getCookie); //getCookie is an array
+  //  let cardId = 1;
+  // getCookie += JSON.stringify({ x });
+
+  cookies().set('itemCart', x);
+
+  // cardId++;
 }
