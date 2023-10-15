@@ -1,13 +1,6 @@
-import test from 'node:test';
 import Image from 'next/image';
 import Link from 'next/link';
-import { createTables } from '../database/databaseSetup.js';
-import { getItems } from '../database/items.js';
-import {
-  crateItem,
-  deleteItem,
-  getItemsFromSql,
-} from '../database/psotgersControler';
+import { getItemsFromSql } from '../database/psotgersControler';
 
 export const metadata = {
   title: 'Mainpage  page',
@@ -17,7 +10,7 @@ export const metadata = {
 export default async function Home() {
   const newItems = await getItemsFromSql();
   /// await crateItem('test01', 'test02', 100, 100, 'test03IMG', 'test04', 'testG');
-  await deleteItem(20);
+
   // await createTables();
 
   // console.log(getItemsFromSql().then((resA) => console.log(resA)));
