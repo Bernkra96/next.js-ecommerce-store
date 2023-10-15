@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default async function CheckoutPage() {
-  const cookieData = await getCookie('itemCart');
+  const cookieData = await getCookie('cart');
   const cartItems = [];
   const items = [];
   cartItems.push(cookieData);
