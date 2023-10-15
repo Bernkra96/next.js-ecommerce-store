@@ -20,20 +20,20 @@ export default function RootLayout({
         <header>
           <a href="/">Home</a>
           <a href="/about">About</a>
-          <a href="/cart">Shopping Cart</a>
+          <a href="/cart">Shopping Cart </a>
         </header>
         {children}
         <footer>
           <h3> Thanks For Shopping </h3>
-          <h4> Impressum</h4>
-          <p> Musster Inc.</p>
-          <p> Mustter Steasse 1 /2 </p>
-          <p> 1111 MustterStatt AT </p>
+          <h4> Imperium</h4>
+          <p> Muster Inc.</p>
+          <p> MusterRow 1/2 </p>
+          <p> 1111 MusterTown AT </p>
           <p> Tel : 00 43 11 65555 </p>
 
           <p>E-Mail : office@musster.inc.at </p>
 
-          <p> Web : musster.inc.at </p>
+          <p> Web : muster.inc.at </p>
         </footer>
       </body>
     </html>
