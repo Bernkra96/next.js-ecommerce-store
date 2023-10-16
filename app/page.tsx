@@ -1,6 +1,9 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getItemsFromSql } from '../database/psotgersControler';
+import { setCookie } from '../util/cookies';
+import { SessionIdManager } from '../util/SessionIdManger';
 
 export const metadata = {
   title: 'Mainpage  page',
@@ -12,10 +15,11 @@ export default async function Home() {
   /// await crateItem('test01', 'test02', 100, 100, 'test03IMG', 'test04', 'testG');
 
   // await createTables();
+  const sessionId = await SessionIdManager();
 
   // console.log(getItemsFromSql().then((resA) => console.log(resA)));
   // console.log(getItemsFromSql().then((rB) => console.log(rB)));
-
+  console.log(sessionId);
   return (
     <main>
       <h1> Bernhard Shop </h1>

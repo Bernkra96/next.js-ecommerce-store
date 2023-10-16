@@ -13,7 +13,6 @@ export default async function CartPage() {
   const cartItems = [];
   const items = [];
   cartItems.push(cookieData);
-  cartItems.push(21);
 
   for (let i = 0; i < cartItems.length; i++) {
     items.push(await getItemById(cartItems[i]));
