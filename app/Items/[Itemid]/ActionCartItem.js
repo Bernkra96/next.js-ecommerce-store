@@ -4,15 +4,16 @@ import { stringifyCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { cookies } from 'next/headers';
 import {
   createCart,
-  getCartsbySessionId,
+  getCartBySessionIdAndItemId,
   getCartsFromSql,
+  updateCartItemQuanttiyperSessionIdansItemId,
 } from '../../../database/CardsControler';
-import { up } from '../../../database/CardsSql';
 import { SessionIdManager } from '../../../util/SessionIdManger';
 
 export async function createOrUpdateCart(Itemid, NumberSelect) {
   const sessionId = await SessionIdManager();
   const allCarts = await getCartsFromSql();
+  const itemId = JSON.stringify(Itemid.item);
   // let oldCookie = [];
   // let newData = [];
   // const getCookie = lodeCookie;
@@ -21,8 +22,16 @@ export async function createOrUpdateCart(Itemid, NumberSelect) {
   // newData.push(x);
   // const Cookie = oldCookie.concat(newData);
   // console.log(Cookie);
-  let sessionIdCart = await getCartsbySessionId(sessionId);
+  let sessionIdCart = await getCartBySessionIdAndItemId(sessionId, itemId);
   // await createCart(10100, 11, 5);
+  if (sessionIdCart === undefined) {
+    await createCart(sessionId, itemId, NumberSelect);
+  } else {
+    let sum = Number(NumberSelect) + Number(sessionIdCart.quantity);
+
+    await updateCartItemQuanttiyperSessionIdansItemId(sessionId, itemId, sum);
+  }
+
   console.log(sessionIdCart);
   console.log(sessionId);
   console.log(allCarts);

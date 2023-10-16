@@ -38,7 +38,21 @@ export const getCartById = cache(async (id: number) => {
   return cart;
 });
 
-export const getCartsbySessionId = cache(async (sessionId: number) => {
+export const getnunberOfItemsInCartBySessionId = cache(
+  async (sessionId: number) => {
+    const [cart] = await sql<Carts[]>`
+    SELECT
+      COUNT(*)
+    FROM
+      carts
+    WHERE
+      session_id = ${sessionId}
+  `;
+    return cart;
+  },
+);
+
+export const getCartbySessionId = cache(async (sessionId: number) => {
   const [carts] = await sql<Carts[]>`
     SELECT
       *
@@ -77,6 +91,20 @@ export const updateCartBySessionId = cache(
     WHERE
       session_id = ${sessionId}
     RETURNING *
+  `;
+    return cart;
+  },
+);
+
+export const getCartBySessionIdAndItemId = cache(
+  async (sessionId: number, itemId: number) => {
+    const [cart] = await sql<Carts[]>`
+    SELECT
+      *
+    FROM
+      carts
+    WHERE session_id = ${sessionId} AND item_id = ${itemId}
+
   `;
     return cart;
   },

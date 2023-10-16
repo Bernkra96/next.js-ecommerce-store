@@ -1,6 +1,13 @@
+import test from 'node:test';
 import Image from 'next/image';
+import {
+  getCartbySessionId,
+  getCartsFromSql,
+  getnunberOfItemsInCartBySessionId,
+} from '../../database/CardsControler';
 import { getItemById } from '../../database/psotgersControler';
 import { getCookie } from '../../util/cookies';
+import { SessionIdManager } from '../../util/SessionIdManger';
 import CartPageForm from './cartPageFrom';
 
 export const metadata = {
@@ -9,30 +16,21 @@ export const metadata = {
 };
 
 export default async function CartPage() {
-  const cookieData = await getCookie('cart');
-  const cartItems = [];
-  const items = [];
-  cartItems.push(cookieData);
+  const sessionID = await SessionIdManager(); // get session id
+  const cartItems = await getCartsFromSql(); // get all cart items
+  const cartItemsPerSession = cartItems.filter(function (value) {
+    return value.sessionId === sessionID; // get cart items for sessionID
+  });
 
-  for (let i = 0; i < cartItems.length; i++) {
-    items.push(await getItemById(cartItems[i]));
-  }
+  let items = []; // get all itemIds from cart items
+  cartItemsPerSession.map(async (item) => {
+    items.push(item.itemId);
+  });
 
   return (
     <main>
-      <h1>Cart page</h1>
-      <h2>Cart Items</h2>
-
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <h3>{item.itemName}</h3>
-            <p>{item.stock + '.Stk'}</p>
-            <p>{item.price + '€'}</p>
-            <p> {item.shortDescription}</p>
-          </li>
-        ))}
-      </ul>
+      <h1> Cart Page </h1>
+      <p> {sessionID} </p>
 
       <CartPageForm />
     </main>
