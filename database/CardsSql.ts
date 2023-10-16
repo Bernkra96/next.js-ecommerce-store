@@ -1,4 +1,5 @@
 import { Sql } from 'postgres';
+import { sql } from './connect';
 
 export type Carts = {
   id: number;
@@ -9,14 +10,12 @@ export type Carts = {
 
 export async function up(sql: Sql) {
   await sql`
-    CREATE TABLE carts (
-      id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      session_id integer NOT NULL,
-      item_id integer NOT NULL,
-      quantity integer NOT NULL
-    );
+    CREATE TABLE carts (id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,session_id integer NOT NULL,item_id integer NOT NULL,quantity integer NOT NULL);
   `;
 }
+
+
+// CREATE TABLE carts (id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,session_id integer NOT NULL,item_id integer NOT NULL,quantity integer NOT NULL);
 
 export async function down(sql: Sql) {
   await sql`

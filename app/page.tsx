@@ -1,6 +1,10 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
+import { createCart } from '../database/CardsControler';
+import { up } from '../database/CardsSql';
+import { sql } from '../database/connect';
+import { createTables } from '../database/databaseSetup';
 import { getItemsFromSql } from '../database/psotgersControler';
 import { setCookie } from '../util/cookies';
 import { SessionIdManager } from '../util/SessionIdManger';
@@ -13,8 +17,11 @@ export const metadata = {
 export default async function Home() {
   const newItems = await getItemsFromSql();
   /// await crateItem('test01', 'test02', 100, 100, 'test03IMG', 'test04', 'testG');
+  ////up(sql);
 
-  // await createTables();
+  await createCart(10100, 11, 5);
+
+  /// await createTables();
   const sessionId = await SessionIdManager();
 
   // console.log(getItemsFromSql().then((resA) => console.log(resA)));
