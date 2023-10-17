@@ -13,16 +13,11 @@ export async function createOrUpdateCart(Itemid, NumberSelect) {
   const sessionId = await SessionIdManager();
   const allCarts = await getCartsFromSql();
   const itemId = JSON.stringify(Itemid.item);
-  // let oldCookie = [];
-  // let newData = [];
-  // const getCookie = lodeCookie;
-  let cookie = sessionId;
-  // oldCookie.push(getCookie);
-  // newData.push(x);
-  // const Cookie = oldCookie.concat(newData);
-  // console.log(Cookie);
-  let sessionIdCart = await getCartBySessionIdAndItemId(sessionId, itemId);
-  // await createCart(10100, 11, 5);
+
+  let sessionIdCart = allCarts.find(function (value) {
+    return value.sessionId === sessionId && value.itemId === itemId;
+  });
+
   if (sessionIdCart === undefined) {
     await createCart(sessionId, itemId, NumberSelect);
   } else {
@@ -31,19 +26,10 @@ export async function createOrUpdateCart(Itemid, NumberSelect) {
     await updateCartItemQuanttiyperSessionIdansItemId(sessionId, itemId, sum);
   }
 
-  console.log(sessionIdCart);
   console.log(sessionId);
   console.log(allCarts);
-  // Cookie.push(parsed);
-  // Cookie.push(x);
-  // cookie.(getCookie); //getCookie is an array
-  //  let cardId = 1;
-  // getCookie += JSON.stringify({ x });
-  // stringifyCookie(Cookie);
-  console.log(sessionIdCart);
-  console.log(cookie);
 
-  cookies().set('cart', cookie);
+  cookies().set('cart', sessionId);
 
   // cardId++;()
 }
