@@ -29,30 +29,42 @@ export default async function CartPage() {
     }),
   );
 
+  let total = 0;
   return (
     <main>
       <h1> Cart Page </h1>
       <p> {sessionID} </p>
 
       <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <h2> {item.itemName} </h2>
-            <p> {item.brand} </p>
-            <p> {'price = ' + item.price + '€'} </p>
-            <Image
-              src={item.img}
-              alt={item.itemName}
-              unoptimized={true}
-              width={255}
-              height={340}
-            />
-            <p> {'Stock : ' + item.stock + ' .stk'} </p>
-            <p> {item.description}</p>
-          </li>
-        ))}
+        {items.map((item) =>
+          cartItemsPerSession.map(
+            (cartitem) => (
+              (total += cartitem.quantity * item.price),
+              (
+                <li key={item.id}>
+                  <h2> {item.itemName} </h2>
+                  <p> {item.brand} </p>
+                  <p> {'price = ' + item.price + '€'} </p>
+                  <Image
+                    src={item.img}
+                    alt={item.itemName}
+                    unoptimized={true}
+                    width={255}
+                    height={340}
+                  />
+                  <p> {'Stock : ' + item.stock + ' .stk'} </p>
+                  <p> {item.description}</p>
+                  <p> {'Quantity : ' + cartitem.quantity} </p>
+                  <p>{'Suptotal'} </p>
+                  <p>{cartitem.quantity * item.price} </p>
+                  <p> {'€'}</p>
+                </li>
+              )
+            ),
+          ),
+        )}
       </ul>
-
+      <p>{total} </p>
       <CartPageForm />
     </main>
   );

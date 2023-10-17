@@ -1,6 +1,7 @@
 'use server';
 import { cookies } from 'next/headers';
 
+// Get, set, and remove cookies
 export async function getCookie(name: string) {
   return await cookies().get(name)?.value;
 }

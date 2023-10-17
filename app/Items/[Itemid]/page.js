@@ -10,6 +10,7 @@ export const metadata = {
 export default async function ItemPage(props) {
   const item = await getItemById(Number(props.params.Itemid));
   const itemId = Number(props.params.Itemid);
+  const stock = Number(item.stock);
 
   return (
     <main>
@@ -26,7 +27,7 @@ export default async function ItemPage(props) {
       <p> {'Stock : ' + item.stock + ' .stk'} </p>
       <p> {item.description}</p>
 
-      <CartItemForm item={itemId} />
+      <CartItemForm item={itemId} stock={stock} />
     </main>
   );
 }
