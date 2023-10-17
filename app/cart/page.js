@@ -1,14 +1,9 @@
-import test from 'node:test';
 import Image from 'next/image';
-import {
-  getCartbySessionId,
-  getCartsFromSql,
-  getnunberOfItemsInCartBySessionId,
-} from '../../database/CardsControler';
+import { getCartsFromSql } from '../../database/CardsControler';
 import { getItemById } from '../../database/psotgersControler';
-import { getCookie } from '../../util/cookies';
 import { SessionIdManager } from '../../util/SessionIdManger';
 import CartPageForm from './cartPageFrom';
+import DeleteCartItemButton from './DeleteCartItemButton';
 
 export const metadata = {
   title: 'Cart page ',
@@ -55,9 +50,12 @@ export default async function CartPage() {
                   <p> {'Stock : ' + item.stock + ' .stk'} </p>
                   <p> {item.description}</p>
                   <p> {'Quantity : ' + cartitem.quantity} </p>
-                  <p>{'Suptotal'} </p>
+                  <p> Suptotal </p>
+
                   <p>{cartitem.quantity * item.price} </p>
-                  <p> {'€'}</p>
+                  <p> €</p>
+
+                  <DeleteCartItemButton itemId={item.id} />
                 </li>
               )
             ),

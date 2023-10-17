@@ -1,6 +1,5 @@
 'use server';
 
-import { stringifyCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { cookies } from 'next/headers';
 import {
   createCart,

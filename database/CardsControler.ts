@@ -96,15 +96,12 @@ export const updateCartBySessionId = cache(
   },
 );
 
-export const getCartBySessionIdAndItemId = cache(
+export const deleteCartsBySessionIdandItemId = cache(
   async (sessionId: number, itemId: number) => {
     const [cart] = await sql<Carts[]>`
-    SELECT
-      *
-    FROM
-      carts
+    DELETE FROM carts
     WHERE session_id = ${sessionId} AND item_id = ${itemId}
-
+    RETURNING *
   `;
     return cart;
   },
