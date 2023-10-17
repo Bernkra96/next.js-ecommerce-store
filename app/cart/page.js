@@ -22,15 +22,36 @@ export default async function CartPage() {
     return value.sessionId === sessionID; // get cart items for sessionID
   });
 
-  let items = []; // get all itemIds from cart items
-  cartItemsPerSession.map(async (item) => {
-    items.push(item.itemId);
-  });
+  const items = []; // get all itemIds from cart items
+  await Promise.all(
+    cartItemsPerSession.map(async (item) => {
+      items.push(await getItemById(item.itemId));
+    }),
+  );
 
   return (
     <main>
       <h1> Cart Page </h1>
       <p> {sessionID} </p>
+
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            <h2> {item.itemName} </h2>
+            <p> {item.brand} </p>
+            <p> {'price = ' + item.price + '€'} </p>
+            <Image
+              src={item.img}
+              alt={item.itemName}
+              unoptimized={true}
+              width={255}
+              height={340}
+            />
+            <p> {'Stock : ' + item.stock + ' .stk'} </p>
+            <p> {item.description}</p>
+          </li>
+        ))}
+      </ul>
 
       <CartPageForm />
     </main>

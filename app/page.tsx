@@ -16,8 +16,8 @@ export const metadata = {
 
 export default async function Home() {
   const newItems = await getItemsFromSql();
-  /// await crateItem('test01', 'test02', 100, 100, 'test03IMG', 'test04', 'testG');
-  ////up(sql);
+  // await crateItem('test01', 'test02', 100, 100, 'test03IMG', 'test04', 'testG');
+  /// up(sql);
 
   await createCart(10100, 11, 5);
 
