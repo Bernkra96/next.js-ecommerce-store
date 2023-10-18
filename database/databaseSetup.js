@@ -11,7 +11,7 @@ export async function createTables() {
       'NASA',
       428000000,
       9,
-      'https://images-assetmages-assets.nasa.gov/image/sts119-s-005/sts119-s-005~thumb.jpg',
+      'https://images-assets.nasa.gov/image/201002060005HQ/201002060005HQ~medium.jpg',
       'Space Shutlle by NASA. Fly to LEO /ISS / GTO /GEO  Stages 1.5  Crew 2 - 8 ',
       '"Space Shutlle by NASA. Fly to LEO /ISS / GTO /GEO Stages 1.5',
     );
