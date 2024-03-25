@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import { getCartsFromSql } from '../../database/CardsControler';
 import { getItemById } from '../../database/psotgersControler';
-import { getCookie } from '../../util/cookies';
+import { SessionIdManager } from '../../util/SessionIdManger';
 import CartPageForm from './cartPageFrom';
+import DeleteCartItemButton from './DeleteCartItemButton';
 
 export const metadata = {
   title: 'Cart page ',
@@ -9,32 +11,58 @@ export const metadata = {
 };
 
 export default async function CartPage() {
-  const cookieData = await getCookie('itemCart');
-  const cartItems = [];
-  const items = [];
-  cartItems.push(cookieData);
-  cartItems.push(21);
+  const sessionID = await SessionIdManager(); // get session id
+  const cartItems = await getCartsFromSql(); // get all cart items
+  const cartItemsPerSession = cartItems.filter(function (value) {
+    return value.sessionId === sessionID; // get cart items for sessionID
+  });
 
-  for (let i = 0; i < cartItems.length; i++) {
-    items.push(await getItemById(cartItems[i]));
-  }
+  const items = []; // get all itemIds from cart items
+  await Promise.all(
+    cartItemsPerSession.map(async (item) => {
+      items.push(await getItemById(item.itemId));
+    }),
+  );
 
+  let total = 0;
   return (
     <main>
-      <h1>Cart page</h1>
-      <h2>Cart Items</h2>
+      <h1> Cart Page </h1>
+      <p> {sessionID} </p>
 
       <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <h3>{item.itemName}</h3>
-            <p>{item.stock + '.Stk'}</p>
-            <p>{item.price + '€'}</p>
-            <p> {item.shortDescription}</p>
-          </li>
-        ))}
-      </ul>
+        {items.map((item) =>
+          cartItemsPerSession.map(
+            (cartitem) => (
+              (total += cartitem.quantity * item.price),
+              (
+                <li key={item.id}>
+                  <h2> {item.itemName} </h2>
+                  <p> {item.brand} </p>
+                  <p> {'price = ' + item.price + '€'} </p>
+                  <Image
+                    src={item.img}
+                    alt={item.itemName}
+                    unoptimized={true}
+                    width={255}
+                    height={340}
+                  />
+                  <p> {'Stock : ' + item.stock + ' .stk'} </p>
+                  <p> {item.description}</p>
+                  <p> {'Quantity : ' + cartitem.quantity} </p>
+                  <p> Suptotal </p>
 
+                  <p>{cartitem.quantity * item.price} </p>
+                  <p> €</p>
+
+                  <DeleteCartItemButton itemId={item.id} />
+                </li>
+              )
+            ),
+          ),
+        )}
+      </ul>
+      <p>{total} </p>
       <CartPageForm />
     </main>
   );

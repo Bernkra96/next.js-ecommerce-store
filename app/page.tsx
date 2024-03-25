@@ -1,6 +1,17 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+  createCart,
+  deleteCartBySessionId,
+  getCartsFromSql,
+} from '../database/CardsControler';
+import { up } from '../database/CardsSql';
+import { sql } from '../database/connect';
+import { createTables } from '../database/databaseSetup';
 import { getItemsFromSql } from '../database/psotgersControler';
+import { setCookie } from '../util/cookies';
+import { SessionIdManager } from '../util/SessionIdManger';
 
 export const metadata = {
   title: 'Mainpage  page',
@@ -9,13 +20,19 @@ export const metadata = {
 
 export default async function Home() {
   const newItems = await getItemsFromSql();
-  /// await crateItem('test01', 'test02', 100, 100, 'test03IMG', 'test04', 'testG');
+  // await crateItem('test01', 'test02', 100, 100, 'test03IMG', 'test04', 'testG');
+  /// up(sql);
 
-  // await createTables();
+  // await deleteCartBySessionId(70129);
+
+  /// await createTables();
+  const sessionId = await SessionIdManager();
 
   // console.log(getItemsFromSql().then((resA) => console.log(resA)));
   // console.log(getItemsFromSql().then((rB) => console.log(rB)));
+  console.log(sessionId);
 
+  console.log(await getCartsFromSql());
   return (
     <main>
       <h1> Bernhard Shop </h1>

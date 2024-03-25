@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { getItemById } from '../../../database/psotgersControler';
-import CartCookieFrom from './CartItemFrom';
 import CartItemForm from './CartItemFrom';
 
 export const metadata = {
@@ -10,6 +9,8 @@ export const metadata = {
 
 export default async function ItemPage(props) {
   const item = await getItemById(Number(props.params.Itemid));
+  const itemId = Number(props.params.Itemid);
+  const stock = Number(item.stock);
 
   return (
     <main>
@@ -25,7 +26,8 @@ export default async function ItemPage(props) {
       />
       <p> {'Stock : ' + item.stock + ' .stk'} </p>
       <p> {item.description}</p>
-      <CartItemForm x={Number(props.params.Itemid)} />
+
+      <CartItemForm item={itemId} stock={stock} />
     </main>
   );
 }

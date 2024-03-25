@@ -1,36 +1,16 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import {
-  createCart,
-  getCartBySessionIdAndItemId,
-  getCartsFromSql,
-  updateCartItemQuanttiyperSessionIdansItemId,
-} from '../../../database/CardsControler';
-import { SessionIdManager } from '../../../util/SessionIdManger';
 
-export async function createOrUpdateCart(Itemid, NumberSelect) {
-  const sessionId = await SessionIdManager();
-  const allCarts = await getCartsFromSql();
-  const itemId = JSON.stringify(Itemid.item);
+export async function createOrUpdateCart(x) {
+  const lodeCookie = cookies().get('itemCart');
+  // let getCookie = JSON.stringify(lodeCookie);
 
-  let sessionIdCart = allCarts.find(function (value) {
-    return value.sessionId === sessionId && value.itemId === itemId;
-  });
+  // cookie.(getCookie); //getCookie is an array
+  //  let cardId = 1;
+  // getCookie += JSON.stringify({ x });
 
-  if (sessionIdCart === undefined) {
-    await createCart(sessionId, itemId, NumberSelect);
-  } else {
-    let sum = Number(NumberSelect) + Number(sessionIdCart.quantity);
-    f;
-
-    await updateCartItemQuanttiyperSessionIdansItemId(sessionId, itemId, sum);
-  }
-
-  console.log(sessionId);
-  console.log(allCarts);
-
-  cookies().set('cart', sessionId);
+  cookies().set('itemCart', x);
 
   // cardId++;()
 }
