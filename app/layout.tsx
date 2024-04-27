@@ -8,7 +8,7 @@ import {
 import { SessionIdManager } from '../util/SessionIdManger';
 
 const inter = Inter({ subsets: ['latin'] });
-let cartsum = 0;
+let cartSum = 0;
 export const metadata: Metadata = {
   title: { default: 'Bernhard Shop', template: '%s ' },
   description: 'Bernhard Shop',
@@ -25,7 +25,7 @@ export default async function RootLayout({
         <header>
           <a href="/">Home</a>
           <a href="/about">About</a>
-          <a href="/cart">Shopping Cart {cartsum} </a>
+          <a href="/cart">Shopping Cart {cartSum} </a>
         </header>
         {children}
         <footer>
@@ -47,7 +47,7 @@ export default async function RootLayout({
 async function getCatNum() {
   let numberOfItemsInCart = await getNumberOfItemsInCart();
 
-  cartsum = Number(numberOfItemsInCart);
+  cartSum = Number(numberOfItemsInCart);
 
   async function getNumberOfItemsInCart() {
     const sessionId = await SessionIdManager();
@@ -55,7 +55,7 @@ async function getCatNum() {
     const loadCartData = await getCartbySessionId(sessionId);
 
     const cartDataLength = await getnunberOfItemsInCartBySessionId(sessionId);
-    let cartData = [];
+    const cartData = [];
 
     cartData.push(loadCartData?.quantity);
     for (let i = 0; i < Number(cartDataLength); i++) {

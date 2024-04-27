@@ -1,13 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { getItemById } from '../../../database/psotgersControler';
 import { createOrUpdateCart } from './ActionCartItem';
 
-export default function CartItemForm(itemid, stock) {
+export default function CartItemForm(itemid) {
   const [selectNumber, setSelectNumber] = useState(1);
-  const itemStock = stock;
-  const maxStock = 10;
 
   return (
     <form>
