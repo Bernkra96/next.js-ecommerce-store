@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { createOrUpdateCart } from './ActionCartItem';
 
-export default function CartItemForm(itemid) {
+export default function CartItemForm(itemID) {
   const [selectNumber, setSelectNumber] = useState(1);
 
   return (
     <form>
       <button
-        formAction={async () => await createOrUpdateCart(itemid, selectNumber)}
+        formAction={async () => await createOrUpdateCart(itemID, selectNumber)}
       >
         Add to Cart
       </button>
